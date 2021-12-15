@@ -1,0 +1,14 @@
+<form [formGroup]="formValue">
+    <div class="form-group mt-3">
+      <label for="exampleInputEmail1">Username</label>
+      <input type="text" formControlName="username" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter Username">
+     
+    </div>
+    <div class="form-group mt-3">
+      <label for="exampleInputPassword1">To-Do</label>
+      <input type="text" formControlName="toDo" class="form-control" id="toDo" placeholder="Enter To Do">
+    </div>
+    
+    <button type="submit" class="btn btn-primary mt-4">Add+
+    </button>
+  </form>
