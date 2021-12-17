@@ -9,16 +9,49 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>1</td>
-            <td>Mash</td>
-            <td>Breakfast</td>
-            <td>Completed</td>
+        <tr *ngFor="let row of list">
+            <td>{{row.id}}</td>
+            <td>{{row.username}}</td>
+            <td>{{row.toDo}}</td>
+            <td>{{row.completed | status}}</td>
             <td>
-                <button class="btn btn-info">Edit</button>
+                <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#modelId">Edit</button>
 
-                <button class="btn btn-danger mx-3">Delete</button>
+                <button (click)="deleteList(row)" class="btn btn-danger mx-3">Delete</button>
             </td>
+
+
+            <!-- Modal -->
+                <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Update To-Do List</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            <form [formGroup]="formEdit">
+                                <div class="form-group mt-1">
+                                    <label for="exampleInputEmail1">Edit Username</label>
+                                    <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Username">
+                                
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label for="exampleInputPassword1">Edit To-Do</label>
+                                    <input type="text" class="form-control" id="toDo" placeholder="To-Do">
+                                </div>
+                                
+                            </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-info">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
         </tr>
     </tbody>
 </table>
+

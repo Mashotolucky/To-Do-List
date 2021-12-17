@@ -26,14 +26,14 @@ export class ApiService {
   }
 
   updateToDo(data:any,id:number){
-    return this.http.post<any>("http://localhost:3000/posts",+id,data)
+    return this.http.put<any>("http://localhost:3000/posts",+id,data)
     .pipe(map((res:any)=>{
       return res;
     }))
   }
 
   deleteToDo(id:number){
-    return this.http.post<any>("http://localhost:3000/posts",+id)
+    return this.http.delete<any>("http://localhost:3000/posts/"+id)
     .pipe(map((res:any)=>{
       return res;
     }))

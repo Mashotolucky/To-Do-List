@@ -13,12 +13,12 @@ import { toDoModel } from '../toDo-Model';
 })
 export class HomeComponent implements OnInit {
 
-  home: Home = {
-    id: 0,
-    username: '',
-    toDo: '',
-    completed: false
-  }
+  // home: Home = {
+  //   id: 0,
+  //   username: '',
+  //   toDo: '',
+  //   completed: false
+  // }
 
   toDoObject: toDoModel = new toDoModel();
 
@@ -35,15 +35,10 @@ export class HomeComponent implements OnInit {
     })
   }
 
+
+
   postToDo(){
-    let x = 0;
-
-    // this.home.id = x++;
-    // this.home.username = this.formValue.value.username;
-    // this.home.toDo = this.formValue.value.toDo;
-    // this.home.completed = true;
-
-    // this.toDoObject.id = x++;
+    
     this.toDoObject.username = this.formValue.value.username;
     this.toDoObject.toDo = this.formValue.value.toDo;
     this.toDoObject.completed = true;
@@ -53,6 +48,7 @@ export class HomeComponent implements OnInit {
     .subscribe(res=>{
       console.log(res);
       alert("To-Do List added successfully");
+      this.formValue.reset();
     },
     err=>{
       alert("Something went wrong");
@@ -60,4 +56,8 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  onEdit(row: any){
+    this.formValue.controls['username'].setValue(row.username);
+    this.formValue.controls['toDo'].setValue(row.toDo);
+  }
 }
