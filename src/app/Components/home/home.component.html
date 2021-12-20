@@ -1,5 +1,5 @@
-<form [formGroup]="formValue">
-    <div class="form-group mt-3">
+<form class="form" [formGroup]="formValue">
+    <div class="form-group mt-6">
       <label for="exampleInputEmail1">Username</label>
       <input type="text" formControlName="username" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter Username" required>
      
@@ -9,6 +9,6 @@
       <input type="text"  formControlName="toDo" class="form-control" id="toDo" placeholder="Enter To-Do" required> 
     </div>
     
-    <button type="submit" class="btn btn-primary mt-4" (click)="postToDo()">Add+
+    <button type="submit" class="btn btn-info mt-4" (click)="postToDo()">Add+
     </button>
   </form>

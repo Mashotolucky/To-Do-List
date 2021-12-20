@@ -15,8 +15,9 @@
             <td>{{row.toDo}}</td>
             <td>{{row.completed | status}}</td>
             <td>
-                <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#modelId">Edit</button>
+                <!-- <button (click)="onEdit(row)" class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#modelId">Edit</button> -->
 
+                <button (click)="onEdit(row)" class="btn btn-info" type="button" routerLink="/">Edit</button>
                 <button (click)="deleteList(row)" class="btn btn-danger mx-3">Delete</button>
             </td>
 
@@ -27,25 +28,25 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Update To-Do List</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" id="cancel" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                             <form [formGroup]="formEdit">
                                 <div class="form-group mt-1">
                                     <label for="exampleInputEmail1">Edit Username</label>
-                                    <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Username">
+                                    <input type="text" formControlName="username" class="form-control" id="username" aria-describedby="usernameHelp">
                                 
                                 </div>
                                 <div class="form-group mt-3">
                                     <label for="exampleInputPassword1">Edit To-Do</label>
-                                    <input type="text" class="form-control" id="toDo" placeholder="To-Do">
+                                    <input type="text" formControlName="toDo" class="form-control" id="toDo">
                                 </div>
                                 
                             </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-info">Save</button>
+                                <button (click)="updateList()" type="button" class="btn btn-info">Update</button>
                             </div>
                         </div>
                     </div>

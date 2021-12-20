@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Home} from '../../Interface/home';
 import {ApiService} from '../../Services/api.service'
 
-import {FormBuilder, FormGroup } from '@angular/forms';
+import {FormBuilder, FormGroup,FormControl,Validators } from '@angular/forms';
 import { toDoModel } from '../toDo-Model';
 
 
@@ -13,16 +13,14 @@ import { toDoModel } from '../toDo-Model';
 })
 export class HomeComponent implements OnInit {
 
-  // home: Home = {
-  //   id: 0,
-  //   username: '',
-  //   toDo: '',
-  //   completed: false
-  // }
+
+
+  formValue = new FormGroup({
+     username: new FormControl('',Validators.required),
+     toDo: new FormControl('')
+  })
 
   toDoObject: toDoModel = new toDoModel();
-
-  formValue !:  FormGroup;
 
 
   constructor(private formbuilber: FormBuilder,
@@ -39,25 +37,28 @@ export class HomeComponent implements OnInit {
 
   postToDo(){
     
-    this.toDoObject.username = this.formValue.value.username;
-    this.toDoObject.toDo = this.formValue.value.toDo;
+    this.toDoObject.username = this.formValue.value.username.trim();
+    this.toDoObject.toDo = this.formValue.value.toDo.trim();
     this.toDoObject.completed = true;
 
+    if(this.toDoObject.username != '' && this.toDoObject.toDo != ''){
 
-    this.api.postToDo(this.toDoObject)
-    .subscribe(res=>{
-      console.log(res);
-      alert("To-Do List added successfully");
-      this.formValue.reset();
-    },
-    err=>{
-      alert("Something went wrong");
-      this.formValue.reset();
+      this.api.postToDo(this.toDoObject)
+      .subscribe(res=>{
+        console.log(res);
+        alert("To-Do List added successfully");
+        this.formValue.reset();
+      },
+      err=>{
+        alert("Something went wrong");
+        this.formValue.reset();
     })
+    }
+    else{
+      alert("Fields cannot be empty!!");
+    }
+    
+    
   }
 
-  onEdit(row: any){
-    this.formValue.controls['username'].setValue(row.username);
-    this.formValue.controls['toDo'].setValue(row.toDo);
-  }
 }
