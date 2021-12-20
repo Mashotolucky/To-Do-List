@@ -1,24 +1,19 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
       "id": 2,
       "username": "Mash",
       "toDo": "Eat again",
       "completed": true
-    }
-  ],
-  "comments": [
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 3,
+      "username": "there",
+      "toDo": "sleep",
+      "completed": true
     }
   ],
+  "comments": [],
   "profile": {
     "name": "typicode"
   }
